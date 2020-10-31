@@ -64,9 +64,6 @@ exports.login = async( req, res, next)=> {
     const user = await UserModel.findOne({email: email}).select('+password');
 
     
-    if(!user || !(await user.correctPassword(password, user.password))){
-        return next( new AppError('Incorrect Email or password', 401))
-    }
     
     const token =signToken(user._id);
         res.status(200).json({
