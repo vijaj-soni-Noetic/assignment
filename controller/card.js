@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Menu = require('../model/menu');
+const Menu = require('../model/card');
 
 
 exports.Create = async (req, res, next) =>{
@@ -27,7 +27,7 @@ exports.Create = async (req, res, next) =>{
 exports.Get = async(req, res, next) => {
     try {
         
-   const itemList = await Menu.find().populate('Item');
+   const itemList = await Menu.find().populate('menu_id');
    
     res.status(200).json({
         result: itemList.length,
